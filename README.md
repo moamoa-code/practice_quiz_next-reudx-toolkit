@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+(1) 로그인/회원가입
+  (단순 id, password 입력으로 변경이 좋아보임)
+-> 완료
 
-## Getting Started
+(2) 퀴즈생성
+  정답처리
+  오답처리
+  건너뛰기
+-> 완료했으나 마지막 문제 정답처리 후 자동으로 건너뛰어지지 않는 문제가 있습니다.
+-> 이펙트 요구사항 미완수입니다.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+(3) 랭킹
+  사용자의 정답률과 랭킹을 표시합니다.
+  순위에서 사용자를 클릭하면 해당 사용자의 상세 정보가 있는 페이지로 연결
+-> 단순히 정답률만으로 랭킹을 표시하게 구현했습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+(4) 마이페이지
+  마이페이지 / 타사용자페이지 :
+  사용자의 닉네임, 랭킹, 퀴즈 시도 횟수, 정답률 그래프를 표시합니다.
+  사용자의 정답률과 랭킹을 표시합니다
+-> 그래프와 세부내역 구현하지 못했습니다.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+덕분에 많이 공부했습니다. 기회주셔서 감사합니다.
