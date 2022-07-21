@@ -66,12 +66,12 @@ const Card = styled.div`
   }
 `
 
-export default function QuizCard({quiz, getRandomQuiz, setMode, quizIdx}) {
+export default function QuizCard({quiz, getRandomQuiz, setMode}) {
   const [answers, setAnswers] = useState<Array<string>>();
   const { loggedInUser } = useSelector((state:any) => state.info);
   const [isLoading, setIsLoading] = useState(false);
-  const [wrongIdx, setWrongIdx] = useState(-1);
-  const [correctIdx, setCorrectIdx] = useState(-1);
+  const [wrongId, setWrongId] = useState(-1);
+  const [correctId, setCorrectId] = useState(-1);
   const wrongStyle = useMemo(() => ({ backgroundColor: "red" }), []);
   const correctStyle = useMemo(() => ({ backgroundColor: "#00e697" }), []);
   const dispatch = useDispatch();
@@ -101,21 +101,21 @@ export default function QuizCard({quiz, getRandomQuiz, setMode, quizIdx}) {
     )
   }
 
-  const checkAnswer = (v, idx) => (e) => {
+  const checkAnswer = (v, id) => (e) => {
     if (v === quiz.answer) {
       // 정답처리
       setIsLoading(true);
-      setCorrectIdx(idx);
+      setCorrectId(id);
       dispatch(hitQuiz(
         {
-          quizIdx: quizIdx,
+          quizId: quiz.id,
           userId: loggedInUser
         }
       ))
       // 이펙트
       setTimeout(function() {
         setIsLoading(false);
-        setCorrectIdx(-1);
+        setCorrectId(-1);
       }, 1500);
       message.success('정답입니다!');
       setTimeout(function() {
@@ -125,16 +125,16 @@ export default function QuizCard({quiz, getRandomQuiz, setMode, quizIdx}) {
     } else {
       // 오답처리
       setIsLoading(true);
-      setWrongIdx(idx);
+      setWrongId(id);
       dispatch(missQuiz({
-        quizIdx: quizIdx,
+        quizId: quiz.id,
         userId: loggedInUser
       }));
       // 이펙트
       message.error('저런.. 다시한번 생각해보세요.');
       setTimeout(function() {
         setIsLoading(false);
-        setWrongIdx(-1);
+        setWrongId(-1);
       }, 1500);
     }
     console.log(e);
@@ -151,8 +151,8 @@ export default function QuizCard({quiz, getRandomQuiz, setMode, quizIdx}) {
             key={i} 
             onClick={checkAnswer(v, i)} 
             style={
-              wrongIdx === i? wrongStyle 
-              : correctIdx === i? correctStyle
+              wrongId === i? wrongStyle 
+              : correctId === i? correctStyle
               : null
             }
             disabled={isLoading}

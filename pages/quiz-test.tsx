@@ -75,7 +75,6 @@ const QuizPage: NextPage = () => {
     }
   }, [loggedInUser, quizzes]);
 
-  // 퀴즈 생성화면
   if (mode === CREATE) {
     return (
       <LayoutContainer>
@@ -87,11 +86,14 @@ const QuizPage: NextPage = () => {
     )
   }
 
-  // 퀴즈 카드 보여주기
   return (
     <LayoutContainer>
       <HeadNav />
       <Container>
+        {JSON.stringify(quiz)}
+        <hr />
+        {JSON.stringify(quizList)}
+        <br/>
         <QuizCard quiz={quiz} getRandomQuiz={getQuiz} setMode={setMode}/>
       </Container>
     </LayoutContainer>

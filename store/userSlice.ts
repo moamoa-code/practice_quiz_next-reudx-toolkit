@@ -26,15 +26,19 @@ const userSlice = createSlice({
       console.log(action.payload);
       let users = [...state.users];
       let hitQuiz:HitQuiz = {
-        quizIdx: Number(action.payload.quizIdx),
+        // quizIdx: Number(action.payload.quizIdx),
+        quizId: action.payload.quizId,
         try: 1,
         correct: true,
       }
       let userIdx = users.findIndex((user) => user.id === action.payload.userId);
-      let hitQuizIdx = users[userIdx].hitQuizzes.findIndex((q:HitQuiz) => q.quizIdx === action.payload.quizIdx);
+      let hitQuizIdx = users[userIdx].hitQuizzes.findIndex(
+        (q:HitQuiz) => q.quizId === action.payload.quizId
+        );
       if (hitQuizIdx !== -1) { // 이미 시도한 퀴즈인 경우
         hitQuiz = {
-          quizIdx: action.payload.quizIdx,
+          // quizIdx: action.payload.quizIdx,
+          quizId: action.payload.quizId,
           try: users[userIdx].hitQuizzes[hitQuizIdx].try + 1,
           correct: true,
         }
@@ -60,15 +64,17 @@ const userSlice = createSlice({
       console.log(action.payload);
       let users = [...state.users];
       let hitQuiz:HitQuiz = {
-        quizIdx: Number(action.payload.quizIdx),
+        quizId: action.payload.quizId,
         try: 1,
         correct: false,
       }
       let userIdx = users.findIndex((user) => user.id === action.payload.userId);
-      let hitQuizIdx = users[userIdx].hitQuizzes.findIndex((q:HitQuiz) => q.quizIdx === action.payload.quizIdx);
+      let hitQuizIdx = users[userIdx].hitQuizzes.findIndex(
+        (q:HitQuiz) => q.quizId === action.payload.quizId
+        );
       if (hitQuizIdx !== -1) { // 이미 시도한 퀴즈인 경우
         hitQuiz = {
-          quizIdx: action.payload.quizIdx,
+          quizId: action.payload.quizId,
           try: users[userIdx].hitQuizzes[hitQuizIdx].try + 1,
           correct: false,
         }

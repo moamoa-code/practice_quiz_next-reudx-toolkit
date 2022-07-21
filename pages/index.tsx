@@ -12,6 +12,8 @@ const Home: NextPage = () => {
   useEffect(() => {
     if(!loggedInUser) {
       Router.replace('/login');
+    } else {
+      Router.replace('/quiz');
     }
   }, [loggedInUser]);
 

@@ -5,8 +5,9 @@ import Quiz from '../interface/quiz';
 import { addQuize } from "../store/quizSlice";
 import { message } from "antd";
 import { SimpleFormDiv } from "./styledComponents";
+import { v4 as uuidv4 } from 'uuid';
 
-export default function CreateQuiz({setMode, setQuizIdx}) {
+export default function CreateQuiz({setMode}) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [fake1, setFake1] = useState("");
@@ -35,15 +36,16 @@ export default function CreateQuiz({setMode, setQuizIdx}) {
   // 퀴즈 등록 클릭
   const createQuiz = (event) => {
     const list = [...quizList];
+    const id = uuidv4();
     event.preventDefault();
     const quiz:Quiz = {
+      id : id,
       question,
       answer,
       fake1,
       fake2,
     }
     list.push(quiz);
-    setQuizIdx(list.length-1);
     setQuizList(list);
     dispatch(addQuize(quiz));
     message.success('퀴즈를 등록했습니다.');
